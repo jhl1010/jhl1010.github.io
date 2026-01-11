@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width'><meta name='description' content="创建的临时用户使用了弱密码，忘记及时清除，被扫出来了。。。">
+<title>记录一次遭遇XMReg挖矿病毒的经历</title>
+
+<link rel='canonical' href='https://jhl1010.github.io/p/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1%E9%81%AD%E9%81%87xmreg%E6%8C%96%E7%9F%BF%E7%97%85%E6%AF%92%E7%9A%84%E7%BB%8F%E5%8E%86/'>
+
+<link rel="stylesheet" href="/scss/style.min.d3dc482ff3aca0d20af23ef14ad91c1087e90261e875db56add536110208d3e5.css"><meta property='og:title' content="记录一次遭遇XMReg挖矿病毒的经历">
+<meta property='og:description' content="创建的临时用户使用了弱密码，忘记及时清除，被扫出来了。。。">
+<meta property='og:url' content='https://jhl1010.github.io/p/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1%E9%81%AD%E9%81%87xmreg%E6%8C%96%E7%9F%BF%E7%97%85%E6%AF%92%E7%9A%84%E7%BB%8F%E5%8E%86/'>
+<meta property='og:site_name' content='Jean'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='腾讯云服务器' /><meta property='article:tag' content='网络安全' /><meta property='article:tag' content='挖矿木马' /><meta property='article:tag' content='XMReg' /><meta property='article:published_time' content='2026-01-11T11:23:09&#43;08:00'/><meta property='article:modified_time' content='2026-01-11T11:23:09&#43;08:00'/><meta property='og:image' content='https://jhl1010.github.io/p/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1%E9%81%AD%E9%81%87xmreg%E6%8C%96%E7%9F%BF%E7%97%85%E6%AF%92%E7%9A%84%E7%BB%8F%E5%8E%86/cover.png' />
+<meta name="twitter:title" content="记录一次遭遇XMReg挖矿病毒的经历">
+<meta name="twitter:description" content="创建的临时用户使用了弱密码，忘记及时清除，被扫出来了。。。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://jhl1010.github.io/p/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1%E9%81%AD%E9%81%87xmreg%E6%8C%96%E7%9F%BF%E7%97%85%E6%AF%92%E7%9A%84%E7%BB%8F%E5%8E%86/cover.png' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            localStorage.setItem(colorSchemeKey, "light");
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_b3cad38579ad39.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Jean</a></h1>
+            <h2 class="site-description">欢迎来到我的网站，这里分享个人生活和学习笔记</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/jhl1010'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon" style="display: flex;align-items: flex-end;margin-bottom: 10px;">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+            <h2 class="widget-title section-title" style="margin-bottom: 2px;">目录</h2>
+        </div>
+        
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#起因">起因</a></li>
+    <li><a href="#关键异常进程分析">关键异常进程分析</a></li>
+    <li><a href="#发现挖矿的自愈机制核心">发现挖矿的“自愈机制”（核心）</a></li>
+    <li><a href="#应急处置流程实战">应急处置流程（实战）</a></li>
+    <li><a href="#顽固点为什么删不了-datauser">顽固点：为什么删不了 datauser？</a></li>
+    <li><a href="#清理收尾">清理收尾</a></li>
+    <li><a href="#问题总结与反思">问题总结与反思</a></li>
+  </ol>
+</nav>
+      
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1%E9%81%AD%E9%81%87xmreg%E6%8C%96%E7%9F%BF%E7%97%85%E6%AF%92%E7%9A%84%E7%BB%8F%E5%8E%86/">
+                <img src="/p/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1%E9%81%AD%E9%81%87xmreg%E6%8C%96%E7%9F%BF%E7%97%85%E6%AF%92%E7%9A%84%E7%BB%8F%E5%8E%86/cover_hu_ad6551c55b464307.png"
+                        srcset="/p/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1%E9%81%AD%E9%81%87xmreg%E6%8C%96%E7%9F%BF%E7%97%85%E6%AF%92%E7%9A%84%E7%BB%8F%E5%8E%86/cover_hu_ad6551c55b464307.png 800w, /p/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1%E9%81%AD%E9%81%87xmreg%E6%8C%96%E7%9F%BF%E7%97%85%E6%AF%92%E7%9A%84%E7%BB%8F%E5%8E%86/cover_hu_6c3a4193bd54fe.png 1600w"
+                        width="800" 
+                        height="533" 
+                        loading="lazy"
+                        alt="Featured image of post 记录一次遭遇XMReg挖矿病毒的经历" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E8%BF%90%E7%BB%B4%E5%AE%89%E5%85%A8/" style="background-color: #2a9d8f; color: #fff;">
+                运维安全
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1%E9%81%AD%E9%81%87xmreg%E6%8C%96%E7%9F%BF%E7%97%85%E6%AF%92%E7%9A%84%E7%BB%8F%E5%8E%86/">记录一次遭遇XMReg挖矿病毒的经历</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            创建的临时用户使用了弱密码，忘记及时清除，被扫出来了。。。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2026-01-11T11:23:09&#43;08:00'>2026-01-11</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <blockquote>
+<p>记录一次在腾讯云 Ubuntu 服务器上，发现并彻底清理挖矿木马的完整过程，希望对后来者有参考价值。</p>
+</blockquote>
+<h2 id="起因">起因
+</h2><p>起因是腾讯云短信提醒：“疑似从事虚拟货币的勘探（挖矿）行为或被恶意植入了挖矿木马”，</p>
+<img src="腾讯云挖矿封禁提醒.jpg" alt="腾讯云挖矿封禁提醒" style="zoom: 25%;"/>
+<p>因为服务器上部署有重要业务，立刻开始排查，发现异常现象：</p>
+<ul>
+<li>top命令发现异常 .javago 进程（我的业务内容基本不涉及java），以及奇怪的进程名systemd-helper，networkd-dispat等，且都属于之前使用的临时用户datauser.</li>
+</ul>
+<h2 id="关键异常进程分析">关键异常进程分析
+</h2><p><strong>1️⃣ 可疑进程特征</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">PID      USER      COMMAND
+</span></span><span class="line"><span class="cl"><span class="m">1379705</span>  datauser  .javago
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>异常点：</p>
+<ul>
+<li>进程名以 <code>.</code> 开头（刻意隐藏）</li>
+<li>非 root 用户运行</li>
+<li>CPU 长期占用</li>
+<li>名称与已知挖矿木马高度一致</li>
+</ul>
+<p><strong>2️⃣ 确认进程来源（关键证据）</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ls -l /proc/1379705/exe
+</span></span><span class="line"><span class="cl">output: /home/datauser/.javago (deleted)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这一步直接实锤：</p>
+<blockquote>
+<p>木马文件已从磁盘删除，但仍在内存中运行
+—— 典型的“内存驻留型挖矿木马”</p>
+</blockquote>
+<h2 id="发现挖矿的自愈机制核心">发现挖矿的“自愈机制”（核心）
+</h2><p>进一步排查 <code>datauser</code> 的 crontab：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo crontab -u datauser -l
+</span></span><span class="line"><span class="cl">（忘记截图了）
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>发现 每分钟检测一次挖矿进程，不在就立刻拉起，重启后自动恢复。十分经典的 “挖矿木马持久化方案” 。</p>
+<h2 id="应急处置流程实战">应急处置流程（实战）
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="mf">1.</span> <span class="err">停</span> <span class="n">cron</span> <span class="o">+</span> <span class="err">杀进程</span>
+</span></span><span class="line"><span class="cl"><span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">stop</span> <span class="n">cron</span>
+</span></span><span class="line"><span class="cl"><span class="n">sudo</span> <span class="n">pkill</span> <span class="o">-</span><span class="n">f</span> <span class="n">javago</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="mf">2.</span> <span class="err">删除</span> <span class="n">cron</span> <span class="err">持久化</span>
+</span></span><span class="line"><span class="cl"><span class="n">sudo</span> <span class="n">crontab</span> <span class="o">-</span><span class="n">u</span> <span class="n">datauser</span> <span class="o">-</span><span class="n">r</span>
+</span></span><span class="line"><span class="cl"><span class="n">sudo</span> <span class="n">rm</span> <span class="o">-</span><span class="n">f</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">spool</span><span class="o">/</span><span class="n">cron</span><span class="o">/</span><span class="n">crontabs</span><span class="o">/</span><span class="n">datauser</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="mf">3.</span> <span class="err">删除挖矿文件</span>
+</span></span><span class="line"><span class="cl"><span class="n">sudo</span> <span class="n">rm</span> <span class="o">-</span><span class="n">rf</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">tmp</span><span class="o">/.</span><span class="n">font</span><span class="o">-</span><span class="n">cache</span><span class="o">-</span><span class="n">d0443d</span>
+</span></span><span class="line"><span class="cl"><span class="n">sudo</span> <span class="n">rm</span> <span class="o">-</span><span class="n">f</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">datauser</span><span class="o">/.</span><span class="n">javago</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="顽固点为什么删不了-datauser">顽固点：为什么删不了 datauser？
+</h2><p>删除用户时遇到错误：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">userdel: user datauser is currently used by process systemd-cached
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>真相是：</strong></p>
+<ul>
+<li>这些并不是真正的 systemd</li>
+<li><strong>systemd / networkd 只能由 root 运行</strong></li>
+<li>它们是木马伪装的进程名，用来阻止删除用户</li>
+</ul>
+<p><strong>正确处理方式</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo kill -9 13947 13948
+</span></span><span class="line"><span class="cl">sudo loginctl terminate-user datauser
+</span></span><span class="line"><span class="cl">sudo userdel -r datauser
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="清理收尾">清理收尾
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="c1">#  在 /tmp 发现以下文件：</span>
+</span></span><span class="line"><span class="cl"><span class="o">.</span><span class="n">xmrig_all_lines</span>
+</span></span><span class="line"><span class="cl"><span class="o">.</span><span class="n">xmrig_errors</span>
+</span></span><span class="line"><span class="cl"><span class="o">.</span><span class="n">libc</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">6</span>
+</span></span><span class="line"><span class="cl"><span class="o">.</span><span class="n">libsystemd</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 清理</span>
+</span></span><span class="line"><span class="cl"><span class="n">sudo</span> <span class="n">rm</span> <span class="o">-</span><span class="n">f</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/.</span><span class="n">xmrig_</span><span class="o">*</span>
+</span></span><span class="line"><span class="cl"><span class="n">sudo</span> <span class="n">rm</span> <span class="o">-</span><span class="n">f</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/.</span><span class="n">libc</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">6</span>
+</span></span><span class="line"><span class="cl"><span class="n">sudo</span> <span class="n">rm</span> <span class="o">-</span><span class="n">f</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/.</span><span class="n">libsystemd</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 检查</span>
+</span></span><span class="line"><span class="cl"><span class="n">ps</span> <span class="n">aux</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">javago</span>
+</span></span><span class="line"><span class="cl"><span class="n">grep</span> <span class="o">-</span><span class="n">R</span> <span class="n">javago</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">cron</span><span class="o">*</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">spool</span><span class="o">/</span><span class="n">cron</span>
+</span></span><span class="line"><span class="cl"><span class="n">systemctl</span> <span class="n">list</span><span class="o">-</span><span class="n">unit</span><span class="o">-</span><span class="n">files</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">E</span> <span class="s2">&#34;java|go|cache&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="问题总结与反思">问题总结与反思
+</h2><p>本次入侵为典型的挖矿木马攻击，木马以普通用户 <code>datauser </code> 运行，通过 <code>cron </code> 实现自愈持久化，内存驻留并伪装系统进程名，最终调用  <code>XMRig </code> 进行门罗币挖矿。
+因为之前设置的临时用户密码过于简单，未及时删除，导致服务器被扫，SSH 弱口令被暴力破解，以此为戒啊！！！</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E8%85%BE%E8%AE%AF%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/">腾讯云服务器</a>
+        
+            <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
+        
+            <a href="/tags/%E6%8C%96%E7%9F%BF%E6%9C%A8%E9%A9%AC/">挖矿木马</a>
+        
+            <a href="/tags/xmreg/">XMReg</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        const elementsToRender = [".main-article", ".widget--toc"];
+
+        elementsToRender.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                renderMathInElement(element, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false },
+                        { left: "\\[", right: "\\]", display: true }
+                    ],
+                    ignoredClasses: ["gist"]
+                });
+            }
+        });
+    });
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2026 Hailin Jin
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.33.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+    
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.c922af694cc257bf1ecc41c0dd7b0430f9114ec280ccf67cd2c6ad55f5316c4e.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

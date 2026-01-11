@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Jean</title>
-        <link>https://jhl1010.github.io/</link>
-        <description>Recent content on Jean</description>
+        <title>挖矿木马 on Jean</title>
+        <link>https://jhl1010.github.io/tags/%E6%8C%96%E7%9F%BF%E6%9C%A8%E9%A9%AC/</link>
+        <description>Recent content in 挖矿木马 on Jean</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>Hailin Jin</copyright>
-        <lastBuildDate>Sun, 11 Jan 2026 11:23:09 +0800</lastBuildDate><atom:link href="https://jhl1010.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 11 Jan 2026 11:23:09 +0800</lastBuildDate><atom:link href="https://jhl1010.github.io/tags/%E6%8C%96%E7%9F%BF%E6%9C%A8%E9%A9%AC/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>记录一次遭遇XMReg挖矿病毒的经历</title>
         <link>https://jhl1010.github.io/p/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1%E9%81%AD%E9%81%87xmreg%E6%8C%96%E7%9F%BF%E7%97%85%E6%AF%92%E7%9A%84%E7%BB%8F%E5%8E%86/</link>
         <pubDate>Sun, 11 Jan 2026 11:23:09 +0800</pubDate>
@@ -170,31 +170,6 @@
 &lt;/h2&gt;&lt;p&gt;本次入侵为典型的挖矿木马攻击，木马以普通用户 &lt;code&gt;datauser &lt;/code&gt; 运行，通过 &lt;code&gt;cron &lt;/code&gt; 实现自愈持久化，内存驻留并伪装系统进程名，最终调用  &lt;code&gt;XMRig &lt;/code&gt; 进行门罗币挖矿。
 因为之前设置的临时用户密码过于简单，未及时删除，导致服务器被扫，SSH 弱口令被暴力破解，以此为戒啊！！！&lt;/p&gt;
 </description>
-        </item>
-        <item>
-        <title>归档</title>
-        <link>https://jhl1010.github.io/archives/</link>
-        <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
-        
-        <guid>https://jhl1010.github.io/archives/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>关于</title>
-        <link>https://jhl1010.github.io/%E5%85%B3%E4%BA%8E/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        <guid>https://jhl1010.github.io/%E5%85%B3%E4%BA%8E/</guid>
-        <description>&lt;p&gt;This is a test page for i18n support.&lt;/p&gt;
-</description>
-        </item>
-        <item>
-        <title>搜索</title>
-        <link>https://jhl1010.github.io/search/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        <guid>https://jhl1010.github.io/search/</guid>
-        <description></description>
         </item>
         
     </channel>
